@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eczema Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .question-container {
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            text-align: center;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options li {
+            background-color: #e2e2e2;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .options li:hover {
+            background-color: #c2c2c2;
+        }
+
+        .answer {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+
+        .explanation {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #balance {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Make the page mobile responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .question-container {
+                padding: 15px;
+                width: 95%;
+            }
+
+            .options li {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .answer {
+                font-size: 16px;
+            }
+
+            .explanation {
+                font-size: 14px;
+            }
+
+            #balance {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Eczema Quiz</h1>
+    <div id="balance">Your current balance: $0</div>
+
+    <!-- Question 1 -->
+    <div class="question-container">
+        <div class="question" id="question1" style="display:block;">
+            <h2>Question 1 - $100</h2>
+            <p>What is eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(1, 'B')">A) A bacterial skin infection</li>
+                <li onclick="checkAnswer(1, 'B')">B) A chronic inflammatory skin condition</li>
+                <li onclick="checkAnswer(1, 'B')">C) A viral skin disorder</li>
+                <li onclick="checkAnswer(1, 'B')">D) A fungal infection</li>
+            </ul>
+            <div class="answer" id="answer1"></div>
+            <div class="explanation" id="explanation1"></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" id="question2" style="display:none;">
+            <h2>Question 2 - $200</h2>
+            <p>What is the most common type of eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(2, 'B')">A) Seborrheic dermatitis</li>
+                <li onclick="checkAnswer(2, 'B')">B) Atopic dermatitis</li>
+                <li onclick="checkAnswer(2, 'B')">C) Contact dermatitis</li>
+                <li onclick="checkAnswer(2, 'B')">D) Nummular eczema</li>
+            </ul>
+            <div class="answer" id="answer2"></div>
+            <div class="explanation" id="explanation2"></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" id="question3" style="display:none;">
+            <h2>Question 3 - $400</h2>
+            <p>What is the primary cause of eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(3, 'C')">A) Excessive sun exposure</li>
+                <li onclick="checkAnswer(3, 'C')">B) Poor hygiene</li>
+                <li onclick="checkAnswer(3, 'C')">C) Genetic and environmental factors</li>
+                <li onclick="checkAnswer(3, 'C')">D) Viral infections</li>
+            </ul>
+            <div class="answer" id="answer3"></div>
+            <div class="explanation" id="explanation3"></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" id="question4" style="display:none;">
+            <h2>Question 4 - $800</h2>
+            <p>Which immune cells are mainly involved in eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(4, 'B')">A) B-cells</li>
+                <li onclick="checkAnswer(4, 'B')">B) T-cells</li>
+                <li onclick="checkAnswer(4, 'B')">C) Mast cells</li>
+                <li onclick="checkAnswer(4, 'B')">D) Neutrophils</li>
+            </ul>
+            <div class="answer" id="answer4"></div>
+            <div class="explanation" id="explanation4"></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" id="question5" style="display:none;">
+            <h2>Question 5 - $1600</h2>
+            <p>Atopic dermatitis is most commonly found in which age group?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(5, 'C')">A) Newborns</li>
+                <li onclick="checkAnswer(5, 'C')">B) Teenagers</li>
+                <li onclick="checkAnswer(5, 'C')">C) Children under 5 years old</li>
+                <li onclick="checkAnswer(5, 'C')">D) Elderly adults</li>
+            </ul>
+            <div class="answer" id="answer5"></div>
+            <div class="explanation" id="explanation5"></div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" id="question6" style="display:none;">
+            <h2>Question 6 - $3200</h2>
+            <p>What is the hallmark symptom of eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(6, 'B')">A) Pain</li>
+                <li onclick="checkAnswer(6, 'B')">B) Itching</li>
+                <li onclick="checkAnswer(6, 'B')">C) Redness without pain</li>
+                <li onclick="checkAnswer(6, 'B')">D) Pustules</li>
+            </ul>
+            <div class="answer" id="answer6"></div>
+            <div class="explanation" id="explanation6"></div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" id="question7" style="display:none;">
+            <h2>Question 7 - $6400</h2>
+            <p>What type of rash is commonly associated with eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(7, 'C')">A) Blisters filled with fluid</li>
+                <li onclick="checkAnswer(7, 'C')">B) Scaly patches</li>
+                <li onclick="checkAnswer(7, 'C')">C) Red, inflamed patches of skin</li>
+                <li onclick="checkAnswer(7, 'C')">D) Yellow crusting</li>
+            </ul>
+            <div class="answer" id="answer7"></div>
+            <div class="explanation" id="explanation7"></div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" id="question8" style="display:none;">
+            <h2>Question 8 - $12800</h2>
+            <p>Which of the following is a common trigger for eczema flare-ups?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(8, 'B')">A) Bright light</li>
+                <li onclick="checkAnswer(8, 'B')">B) Stress</li>
+                <li onclick="checkAnswer(8, 'B')">C) Cold weather</li>
+                <li onclick="checkAnswer(8, 'B')">D) High humidity</li>
+            </ul>
+            <div class="answer" id="answer8"></div>
+            <div class="explanation" id="explanation8"></div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question" id="question9" style="display:none;">
+            <h2>Question 9 - $25600</h2>
+            <p>Which of the following is used to diagnose eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(9, 'A')">A) Clinical examination and history</li>
+                <li onclick="checkAnswer(9, 'A')">B) Blood test</li>
+                <li onclick="checkAnswer(9, 'A')">C) Skin biopsy</li>
+                <li onclick="checkAnswer(9, 'A')">D) MRI scan</li>
+            </ul>
+            <div class="answer" id="answer9"></div>
+            <div class="explanation" id="explanation9"></div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question" id="question10" style="display:none;">
+            <h2>Question 10 - $51200</h2>
+            <p>Which medication is commonly used to treat eczema in the UK?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(10, 'B')">A) Oral antibiotics</li>
+                <li onclick="checkAnswer(10, 'B')">B) Topical corticosteroids</li>
+                <li onclick="checkAnswer(10, 'B')">C) Antihistamines</li>
+                <li onclick="checkAnswer(10, 'B')">D) Oral antifungals</li>
+            </ul>
+            <div class="answer" id="answer10"></div>
+            <div class="explanation" id="explanation10"></div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question" id="question11" style="display:none;">
+            <h2>Question 11 - $102400</h2>
+            <p>Which of these treatments is NOT typically used for eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(11, 'C')">A) Topical moisturizers</li>
+                <li onclick="checkAnswer(11, 'C')">B) Oral corticosteroids</li>
+                <li onclick="checkAnswer(11, 'C')">C) Antifungal creams</li>
+                <li onclick="checkAnswer(11, 'C')">D) Phototherapy</li>
+            </ul>
+            <div class="answer" id="answer11"></div>
+            <div class="explanation" id="explanation11"></div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question" id="question12" style="display:none;">
+            <h2>Question 12 - $204800</h2>
+            <p>What is the role of probiotics in treating eczema?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(12, 'A')">A) May reduce inflammation</li>
+                <li onclick="checkAnswer(12, 'A')">B) Increase severity of flare-ups</li>
+                <li onclick="checkAnswer(12, 'A')">C) Prevent infection</li>
+                <li onclick="checkAnswer(12, 'A')">D) Not helpful</li>
+            </ul>
+            <div class="answer" id="answer12"></div>
+            <div class="explanation" id="explanation12"></div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question" id="question13" style="display:none;">
+            <h2>Question 13 - $409600</h2>
+            <p>Which of these medications is NOT commonly used in eczema treatment?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(13, 'C')">A) Topical calcineurin inhibitors</li>
+                <li onclick="checkAnswer(13, 'C')">B) Oral antihistamines</li>
+                <li onclick="checkAnswer(13, 'C')">C) Oral antibiotics</li>
+                <li onclick="checkAnswer(13, 'C')">D) Topical corticosteroids</li>
+            </ul>
+            <div class="answer" id="answer13"></div>
+            <div class="explanation" id="explanation13"></div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question" id="question14" style="display:none;">
+            <h2>Question 14 - $819200</h2>
+            <p>Which treatment is commonly used in severe eczema cases?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(14, 'D')">A) Ice packs</li>
+                <li onclick="checkAnswer(14, 'D')">B) Herbal ointments</li>
+                <li onclick="checkAnswer(14, 'D')">C) Over-the-counter hydrocortisone cream</li>
+                <li onclick="checkAnswer(14, 'D')">D) Biologic therapies</li>
+            </ul>
+            <div class="answer" id="answer14"></div>
+            <div class="explanation" id="explanation14"></div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question" id="question15" style="display:none;">
+            <h2>Question 15 - $1000000</h2>
+            <p>Chiropractic treatment for eczema mainly aims to?</p>
+            <ul class="options">
+                <li onclick="checkAnswer(15, 'A')">A) Support immune function and reduce inflammation</li>
+                <li onclick="checkAnswer(15, 'A')">B) Cure eczema completely</li>
+                <li onclick="checkAnswer(15, 'A')">C) Eliminate the need for medications</li>
+                <li onclick="checkAnswer(15, 'A')">D) Promote skin regeneration</li>
+            </ul>
+            <div class="answer" id="answer15"></div>
+            <div class="explanation" id="explanation15"></div>
+        </div>
+    </div>
+
+    <script>
+        let balance = 0;
+        const correctAnswers = {
+            1: 'B', 2: 'B', 3: 'C', 4: 'B', 5: 'C', 6: 'B', 7: 'C', 8: 'B',
+            9: 'A', 10: 'B', 11: 'C', 12: 'A', 13: 'C', 14: 'D', 15: 'A'
+        };
+
+        const explanations = {
+            1: "Eczema is a chronic inflammatory skin condition that causes red, itchy rashes. It's not caused by infection.",
+            2: "Atopic dermatitis is the most common form of eczema, especially in children.",
+            3: "Eczema is caused by a combination of genetic predisposition and environmental triggers.",
+            4: "T-cells are the immune cells most involved in eczema, triggering inflammation and itching.",
+            5: "Atopic dermatitis usually starts in children under 5 years old and is common in those with a family history of allergies.",
+            6: "Itching is the hallmark symptom of eczema, often severe and causing sleep disturbances.",
+            7: "The rash associated with eczema is typically red and inflamed, with dry patches.",
+            8: "Stress, changes in weather, and allergens like pollen can all trigger eczema flare-ups.",
+            9: "A clinical examination and patient history are key to diagnosing eczema.",
+            10: "Topical corticosteroids are commonly used in the UK to treat eczema by reducing inflammation.",
+            11: "Antifungal creams are not used for eczema treatment, which typically involves steroids or moisturizers.",
+            12: "Probiotics may help reduce inflammation in eczema by supporting immune function.",
+            13: "Oral antibiotics are not used to treat eczema unless there's an infection present.",
+            14: "Biologic therapies are used for severe cases of eczema when other treatments fail.",
+            15: "Chiropractic treatment aims to support immune function and may help reduce inflammation, but it is not a cure."
+        };
+
+        function checkAnswer(questionNumber, selectedAnswer) {
+            const correctAnswer = correctAnswers[questionNumber];
+            const answerElement = document.getElementById("answer" + questionNumber);
+            const explanationElement = document.getElementById("explanation" + questionNumber);
+
+            if (selectedAnswer === correctAnswer) {
+                balance += 100 * Math.pow(2, questionNumber - 1); // Reward increases with each question
+                answerElement.innerHTML = "Correct! Well done!";
+                answerElement.className = "answer correct";
+            } else {
+                balance -= 100 * Math.pow(2, questionNumber - 1); // Penalty for wrong answer
+                answerElement.innerHTML = "Incorrect!";
+                answerElement.className = "answer incorrect";
+            }
+
+            document.getElementById("balance").innerHTML = "Your current balance: $" + balance;
+
+            explanationElement.innerHTML = explanations[questionNumber];
+            setTimeout(function () {
+                document.getElementById("question" + questionNumber).style.display = 'none';
+                if (questionNumber < 15) {
+                    document.getElementById("question" + (questionNumber + 1)).style.display = 'block';
+                }
+            }, 5000); // Wait 5 seconds before moving to the next question
+        }
+    </script>
+</body>
+</html>
